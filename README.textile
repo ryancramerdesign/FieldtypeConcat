@@ -1,7 +1,6 @@
 h1. ProcessWire Concatenate Fieldtype (FieldtypeConcat)
 
-h2. Fieldtype that concatenates the values from one or more other fields at runtime
-
+Fieldtype that concatenates the values from one or more other fields at runtime.
 The value can contain additional formatting and/or words as needed, which you define
 in your Concat field settings. 
 
@@ -45,26 +44,19 @@ h3. Considerations
 h3. How to Install 
 
 # Install the module by placing FieldtypeConcat.module in /site/modules/.
-
 # _Check for new modules_ on the _Modules_ screen in the ProcessWire admin.
-
 # Click _Install_ for the Concat Fieldtype.
 
 
 h3. How to Create a Concat Field
 
 # Under _Setup_ and _Fields_ create a new field using type _Concat_. 
-
 # After entering the new field name and label, click _Save_.
-
 # Click the _Details_ tab and enter one or more field names. Separate them with whatever
   spacing and punctuation is appropriate. 
-
 # Optionally choose one or more _Text Formatters_. If you are not sure which, "HTML Entity Encoder"
   is a good default to use. 
-
 # Save. 
-
 # Add your new field to one or more Templates. 
 
 
@@ -73,7 +65,7 @@ h3. How to access the value of a Concat field
 This is no different than accessing the value of any other field. If your Concat field has the
 name "full_name" then you would output its value like this:
 
-@echo $page->full_name;@
+bc. echo $page->full_name;
 
 -----------------------
 Copyright 2012 by Ryan Cramer
