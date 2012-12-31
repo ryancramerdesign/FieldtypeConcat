@@ -13,7 +13,7 @@ h3. Example
 separate _full_name_ field composed of _first_name_ and _last_name_, without redundancy.
 
 * *Solution:* You would create a new _Concat_ field, click the _details_ tab, and enter 
-"first_name last_name" (the fields you want to concatenate) in the settings. 
+@first_name last_name@ (the fields you want to concatenate) in the settings. 
 
 
 h3. Other Potential Uses
@@ -29,7 +29,7 @@ h3. Considerations
 
 * The value for this fieldtype is generated at runtime and thus no data is stored in 
   the database. This is good because there is no duplication. However, it also means that
-  you cannot directly query a Concat field from $pages->find(), for example. 
+  you cannot directly query a Concat field from @$pages->find()@, for example. 
 * If you happen to change the name of a field being used in a Concat field, you will have
   to update the name in your Concat field settings as well.
 * By design, Concat fields do not inherit the _text formatters_ of the fields they 
@@ -39,7 +39,7 @@ h3. Considerations
 
 h3. How to Install 
 
-# Install the module by placing FieldtypeConcat.module in /site/modules/.
+# Install the module by placing @FieldtypeConcat.module@ in @/site/modules/@.
 # _Check for new modules_ on the _Modules_ screen in the ProcessWire admin.
 # Click _Install_ for the Concat Fieldtype.
 
