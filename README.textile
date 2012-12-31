@@ -1,4 +1,6 @@
-h1. ProcessWire Concatenate Fieldtype (FieldtypeConcat)
+h1. FieldtypeConcat
+
+h2. ProcessWire Concatenate Fieldtype
 
 Fieldtype that concatenates the values from one or more other fields at runtime.
 The value can contain additional formatting and/or words as needed, which you define
@@ -7,10 +9,10 @@ in your Concat field settings.
 
 h3. Example 
 
-*Problem:* Your system has a first_name and last_name field, and you want to have a 
+* *Problem:* Your system has a first_name and last_name field, and you want to have a 
 separate full_name field composed of first_name and last_name. 
 
-*Solution:* You would create a new _Concat_ field, click the _details_ tab, and enter 
+* *Solution:* You would create a new _Concat_ field, click the _details_ tab, and enter 
 "first_name last_name" (the fields you want to concatenate) in the settings. 
 
 
@@ -18,11 +20,8 @@ h3. Other Potential Uses
 
 * Having a field that combines the value of two or more others, without the redundancy of 
   separately stored data.
-
 * Defining a custom "label field" for select boxes, like those used with the Page field. 
-
 * Defining a custom label for your Page List that includes your own formatting.  
-
 * Defining an alternate variation of a text field that uses a different text formatter.
 
 
@@ -31,13 +30,10 @@ h3. Considerations
 * The value for this fieldtype is generated at runtime and thus no data is stored in 
   the database. This is good because there is no duplication. However, it also means that
   you cannot directly query a Concat field from $pages->find(), for example. 
-
 * If you happen to change the name of a field being used in a Concat field, you will have
   to update the name in your Concat field settings as well.
-
 * By design, Concat fields do not inherit the _text formatters_ of the fields they 
   concatenate. You define these separately with the Concat field. 
-  
 * Because this is a runtime-generated field, there is no Inputfield associated with it. 
 
 
