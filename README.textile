@@ -9,8 +9,8 @@ in your Concat field settings.
 
 h3. Example 
 
-* *Problem:* Your system has a first_name and last_name field, and you want to have a 
-separate full_name field composed of first_name and last_name. 
+* *Problem:* Your system has a _first_name_ and _last_name_ field, and you want to have a 
+separate _full_name_ field composed of _first_name_ and _last_name_, without redundancy.
 
 * *Solution:* You would create a new _Concat_ field, click the _details_ tab, and enter 
 "first_name last_name" (the fields you want to concatenate) in the settings. 
