@@ -1,0 +1,80 @@
+h1. ProcessWire Concatenate Fieldtype (FieldtypeConcat)
+
+h2. Fieldtype that concatenates the values from one or more other fields at runtime
+
+The value can contain additional formatting and/or words as needed, which you define
+in your Concat field settings. 
+
+
+h3. Example 
+
+*Problem:* Your system has a first_name and last_name field, and you want to have a 
+separate full_name field composed of first_name and last_name. 
+
+*Solution:* You would create a new _Concat_ field, click the _details_ tab, and enter 
+"first_name last_name" (the fields you want to concatenate) in the settings. 
+
+
+h3. Other Potential Uses
+
+* Having a field that combines the value of two or more others, without the redundancy of 
+  separately stored data.
+
+* Defining a custom "label field" for select boxes, like those used with the Page field. 
+
+* Defining a custom label for your Page List that includes your own formatting.  
+
+* Defining an alternate variation of a text field that uses a different text formatter.
+
+
+h3. Considerations
+
+* The value for this fieldtype is generated at runtime and thus no data is stored in 
+  the database. This is good because there is no duplication. However, it also means that
+  you cannot directly query a Concat field from $pages->find(), for example. 
+
+* If you happen to change the name of a field being used in a Concat field, you will have
+  to update the name in your Concat field settings as well.
+
+* By design, Concat fields do not inherit the _text formatters_ of the fields they 
+  concatenate. You define these separately with the Concat field. 
+  
+* Because this is a runtime-generated field, there is no Inputfield associated with it. 
+
+
+h3. How to Install 
+
+# Install the module by placing FieldtypeConcat.module in /site/modules/.
+
+# _Check for new modules_ on the _Modules_ screen in the ProcessWire admin.
+
+# Click _Install_ for the Concat Fieldtype.
+
+
+h3. How to Create a Concat Field
+
+# Under _Setup_ and _Fields_ create a new field using type _Concat_. 
+
+# After entering the new field name and label, click _Save_.
+
+# Click the _Details_ tab and enter one or more field names. Separate them with whatever
+  spacing and punctuation is appropriate. 
+
+# Optionally choose one or more _Text Formatters_. If you are not sure which, "HTML Entity Encoder"
+  is a good default to use. 
+
+# Save. 
+
+# Add your new field to one or more Templates. 
+
+
+h3. How to access the value of a Concat field
+
+This is no different than accessing the value of any other field. If your Concat field has the
+name "full_name" then you would output its value like this:
+
+@echo $page->full_name;@
+
+-----------------------
+Copyright 2012 by Ryan Cramer
+
