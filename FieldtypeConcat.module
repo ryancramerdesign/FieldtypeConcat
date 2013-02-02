@@ -22,7 +22,7 @@ class FieldtypeConcat extends FieldtypeText {
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Concat',
-			'version' => 100,
+			'version' => 101,
 			'summary' => 'Concatenates the values from one or more other fields at runtime. For example, you might create a full_name field that combines the values of first_name and last_name.',
 			'author' => 'Ryan Cramer',
 			);
@@ -43,7 +43,7 @@ class FieldtypeConcat extends FieldtypeText {
 		$input->attr('name', 'concatFields');
 		$input->attr('value', $field->concatFields); 
 		$input->label = $this->_('Names of fields to concatenate');
-		$input->description = $this->_('Enter one or more field names separated by a space and/or your chosen punctuation. For example: "last_name, first_name". Note that the concatenated value is created from the unformatted version of fields. As a result, you may wish to also apply one or more text formatters above.'); // Description
+		$input->description = $this->_('Enter one or more field names separated by a space and/or your chosen punctuation. For example: "last_name, first_name". Note that the concatenated value is created from the unformatted version of fields. If you want a formatted version of a field, add an exclamation point after it, like "last_name!". You may also choose to add text formatters to the value after concatenation by selecting one or more text formatters above.'); // Description
 		$notes = $this->_('Names of fields in your system:') . ' id, name, path, url, template, template, ';
 		foreach(wire('fields') as $f) {
 			if($f->id == $field->id) continue; 
@@ -72,9 +72,9 @@ class FieldtypeConcat extends FieldtypeText {
 		foreach(wire('fields') as $f) {
 			if($f->name == $field->name) continue; 
 			if(strpos($str, $f->name) === false) continue; 
-			// fieldname plus optional subfield
-			if(!preg_match('/\b(' . $f->name . '(\.[-_.a-zA-Z0-9]+)?)\b/', $str, $matches)) continue; 
-			$fieldName = $matches[1]; 
+			// fieldname plus optional subfield and trailing exclamation point
+			if(!preg_match('/\b(' . $f->name . '(\.[-_.a-zA-Z0-9]+)?)\b(!?)/', $str . ' ', $matches)) continue; 
+			$fieldName = $matches[1] . $matches[3];
 			$lengths[$fieldName] = strlen($fieldName);
 		}	
 
@@ -88,7 +88,12 @@ class FieldtypeConcat extends FieldtypeText {
 		foreach($lengths as $fieldName => $length) {
 			$hash = '!' . md5($fieldName) . '!';
 			$hashes[$fieldName] = $hash;
-			$values[$hash] = (string) $page->getUnformatted($fieldName);
+			if(substr($fieldName, -1) == '!') {
+				$fieldName = rtrim($fieldName, '!'); 
+				$values[$hash] = (string) $page->get($fieldName); 
+			} else {
+				$values[$hash] = (string) $page->getUnformatted($fieldName);
+			}
 		}
 		
 		// first replace the field names with hashed field names.
