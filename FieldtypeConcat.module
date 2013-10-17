@@ -22,7 +22,7 @@ class FieldtypeConcat extends FieldtypeText {
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Concat',
-			'version' => 103,
+			'version' => 104,
 			'summary' => 'Concatenates the values from one or more other fields at runtime. For example, you might create a full_name field that combines the values of first_name and last_name.',
 			'author' => 'Ryan Cramer',
 			);
@@ -77,6 +77,11 @@ class FieldtypeConcat extends FieldtypeText {
 			$fieldName = $matches[1] . $matches[3];
 			$lengths[$fieldName] = strlen($fieldName);
 		}	
+
+		if(strpos($str, "parent.") !== false && preg_match('/\b(parent\.[-_.a-zA-Z0-9]+)\b(!?)/', $str . ' ', $matches)) {
+			$fieldName = $matches[1] . $matches[2]; 	
+			$lengths[$fieldName] = strlen($fieldName); 
+		}
 
 		if(!count($lengths)) return $str;
 
