@@ -63,6 +63,12 @@ name "full_name" then you would output its value like this:
 
 bc. echo $page->full_name;
 
+h3. Using subfields
+
+In addition to regular field names, you can also reference properties of object-based fields like
+Page references and parents. For example @parent.title@, @parent.parent.path@, @categories.name@,
+and so on. 
+
 -----------------------
-Copyright 2012 by Ryan Cramer
+Copyright 2015 by Ryan Cramer
 
